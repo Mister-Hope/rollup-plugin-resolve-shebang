@@ -1,0 +1,61 @@
+{
+  "name": "rollup-plugin-resolve-shebang",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Rollup plugin with recognize shebang and preserve it",
+  "keywords": [
+    "rollup",
+    "rollup-plugin",
+    "shebang"
+  ],
+  "homepage": "https://github.com/mister-hope/rollup-plugin-resolve-shebang#readme",
+  "bugs": {
+    "url": "https://github.com/mister-hope/rollup-plugin-resolve-shebang/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com//mister-hope/rollup-plugin-resolve-shebang.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Mr.Hope",
+    "email": "mister-hope@outlook.com",
+    "url": "https://mister-hope.com"
+  },
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "engines": {
+    "node": "^18.0.0 || >=20"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin esbuild",
+    "clean": "rimraf ./lib ./*.tsbuildinfo",
+    "lint": "prettier --check --write .",
+    "prepublish": "pnpm run clean && pnpm run build"
+  },
+  "packageManager": "pnpm@8.10.5",
+  "dependencies": {
+    "magic-string": "^0.30.5"
+  },
+  "peerDependencies": {
+    "rollup": ">= 4"
+  },
+  "devDependencies": {
+    "esbuild": "0.19.7",
+    "prettier": "3.1.0",
+    "rimraf": "5.0.5",
+    "rollup": "4.5.0",
+    "rollup-plugin-dts": "6.1.0",
+    "rollup-plugin-esbuild": "6.1.0",
+    "typescript": "5.3.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
