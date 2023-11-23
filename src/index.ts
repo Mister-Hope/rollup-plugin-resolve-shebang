@@ -8,7 +8,7 @@ import type {
 
 const sheBangRegex = /^\s*(#!.*)/;
 
-export const shebangPlugin = (): Plugin => {
+export const shebang = (): Plugin => {
   const shebangMap = new Map<string, string>();
 
   return {
@@ -31,11 +31,11 @@ export const shebangPlugin = (): Plugin => {
 
     renderChunk(
       code: string,
-      chunk: RenderedChunk,
+      chunk: RenderedChunk
     ): { code: string; map?: SourceMapInput } | null {
       if (chunk.isEntry) {
         const key = Array.from(shebangMap.keys()).find(
-          (id) => chunk.facadeModuleId?.includes(id),
+          (id) => chunk.facadeModuleId?.includes(id)
         );
 
         if (key) {
