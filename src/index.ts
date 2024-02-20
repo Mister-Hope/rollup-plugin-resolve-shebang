@@ -31,11 +31,11 @@ export const shebang = (): Plugin => {
 
     renderChunk(
       code: string,
-      chunk: RenderedChunk
+      chunk: RenderedChunk,
     ): { code: string; map?: SourceMapInput } | null {
       if (chunk.isEntry) {
-        const key = Array.from(shebangMap.keys()).find(
-          (id) => chunk.facadeModuleId?.includes(id)
+        const key = Array.from(shebangMap.keys()).find((id) =>
+          chunk.facadeModuleId?.includes(id),
         );
 
         if (key) {
