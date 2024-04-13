@@ -24,13 +24,13 @@ devDependencies:
     version: 4.14.2
   rollup-plugin-dts:
     specifier: 6.1.0
-    version: 6.1.0(rollup@4.14.2)(typescript@5.4.4)
+    version: 6.1.0(rollup@4.14.2)(typescript@5.4.5)
   rollup-plugin-esbuild:
     specifier: 6.1.1
     version: 6.1.1(esbuild@0.20.2)(rollup@4.14.2)
   typescript:
-    specifier: 5.4.4
-    version: 5.4.4
+    specifier: 5.4.5
+    version: 5.4.5
 
 packages:
 
@@ -721,7 +721,7 @@ packages:
       glob: 10.3.10
     dev: true
 
-  /rollup-plugin-dts@6.1.0(rollup@4.14.2)(typescript@5.4.4):
+  /rollup-plugin-dts@6.1.0(rollup@4.14.2)(typescript@5.4.5):
     resolution: {integrity: sha512-ijSCPICkRMDKDLBK9torss07+8dl9UpY9z1N/zTeA1cIqdzMlpkV3MOOC7zukyvQfDyxa1s3Dl2+DeiP/G6DOw==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -730,7 +730,7 @@ packages:
     dependencies:
       magic-string: 0.30.9
       rollup: 4.14.2
-      typescript: 5.4.4
+      typescript: 5.4.5
     optionalDependencies:
       '@babel/code-frame': 7.24.2
     dev: true
@@ -835,8 +835,8 @@ packages:
     dev: true
     optional: true
 
-  /typescript@5.4.4:
-    resolution: {integrity: sha512-dGE2Vv8cpVvw28v8HCPqyb08EzbBURxDpuhJvTrusShUfGnhHBafDsLdS1EhhxyL6BJQE+2cT3dDPAv+MQ6oLw==}
+  /typescript@5.4.5:
+    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
