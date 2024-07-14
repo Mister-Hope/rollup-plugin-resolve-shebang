@@ -37,7 +37,7 @@
     "prepublish": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
-    "magic-string": "^0.30.7"
+    "magic-string": "^0.30.10"
   },
   "devDependencies": {
     "esbuild": "0.23.0",
@@ -51,7 +51,7 @@
   "peerDependencies": {
     "rollup": ">= 4"
   },
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.5.0",
   "engines": {
     "node": "^18.0.0 || >=20"
   },
