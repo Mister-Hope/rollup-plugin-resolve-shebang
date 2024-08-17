@@ -40,7 +40,7 @@
     "magic-string": "^0.30.11"
   },
   "devDependencies": {
-    "esbuild": "0.23.0",
+    "esbuild": "0.23.1",
     "prettier": "3.3.3",
     "rimraf": "6.0.1",
     "rollup": "4.20.0",
