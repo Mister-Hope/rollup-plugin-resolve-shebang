@@ -37,7 +37,7 @@
     "prepublish": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
-    "magic-string": "^0.30.11"
+    "magic-string": "^0.30.12"
   },
   "devDependencies": {
     "esbuild": "0.24.0",
@@ -46,12 +46,12 @@
     "rollup": "4.24.0",
     "rollup-plugin-dts": "6.1.1",
     "rollup-plugin-esbuild": "6.1.1",
-    "typescript": "5.6.2"
+    "typescript": "5.6.3"
   },
   "peerDependencies": {
     "rollup": ">= 4"
   },
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.12.1",
   "engines": {
     "node": "^18.0.0 || >=20"
   },
