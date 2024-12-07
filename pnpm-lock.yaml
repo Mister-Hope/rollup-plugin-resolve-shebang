@@ -10,7 +10,7 @@ importers:
     dependencies:
       magic-string:
         specifier: ^0.30.12
-        version: 0.30.13
+        version: 0.30.14
     devDependencies:
       esbuild:
         specifier: 0.24.0
@@ -425,8 +425,8 @@ packages:
     resolution: {integrity: sha512-CgeuL5uom6j/ZVrg7G/+1IXqRY8JXX4Hghfy5YE0EhoYQWvndP1kufu58cmZLNIDKnRhZrXfdS9urVWx98AipQ==}
     engines: {node: 20 || >=22}
 
-  magic-string@0.30.13:
-    resolution: {integrity: sha512-8rYBO+MsWkgjDSOvLomYnzhdwEG51olQ4zL5KXnNJWV5MNmrb4rTZdrtkhxjnD/QyZUqR/Z/XDsUs/4ej2nx0g==}
+  magic-string@0.30.14:
+    resolution: {integrity: sha512-5c99P1WKTed11ZC0HMJOj6CDIue6F8ySu+bJL+85q1zBEIY8IklrJ1eiKC2NDRh3Ct3FcvmJPyQHb9erXMTJNw==}
 
   minimatch@10.0.1:
     resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
@@ -837,7 +837,7 @@ snapshots:
 
   lru-cache@11.0.1: {}
 
-  magic-string@0.30.13:
+  magic-string@0.30.14:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
@@ -874,7 +874,7 @@ snapshots:
 
   rollup-plugin-dts@6.1.1(rollup@4.28.1)(typescript@5.7.2):
     dependencies:
-      magic-string: 0.30.13
+      magic-string: 0.30.14
       rollup: 4.28.1
       typescript: 5.7.2
     optionalDependencies:
