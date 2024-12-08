@@ -1,7 +1,6 @@
 {
   "name": "rollup-plugin-resolve-shebang",
   "version": "1.0.1",
-  "type": "module",
   "description": "Rollup plugin with recognize shebang and preserve it",
   "keywords": [
     "rollup",
@@ -22,11 +21,9 @@
     "email": "mister-hope@outlook.com",
     "url": "https://mister-hope.com"
   },
+  "type": "module",
   "exports": {
     ".": "./lib/index.js"
-  },
-  "engines": {
-    "node": "^18.0.0 || >=20"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -39,21 +36,23 @@
     "lint": "prettier --check --write .",
     "prepublish": "pnpm run clean && pnpm run build"
   },
-  "packageManager": "pnpm@8.10.5",
   "dependencies": {
-    "magic-string": "^0.30.5"
+    "magic-string": "^0.30.14"
+  },
+  "devDependencies": {
+    "prettier": "3.4.2",
+    "rimraf": "6.0.1",
+    "rollup": "4.28.1",
+    "rollup-plugin-dts": "6.1.1",
+    "rollup-plugin-esbuild": "6.1.1",
+    "typescript": "5.7.2"
   },
   "peerDependencies": {
     "rollup": ">= 4"
   },
-  "devDependencies": {
-    "esbuild": "0.19.7",
-    "prettier": "3.1.0",
-    "rimraf": "5.0.5",
-    "rollup": "4.5.0",
-    "rollup-plugin-dts": "6.1.0",
-    "rollup-plugin-esbuild": "6.1.0",
-    "typescript": "5.3.2"
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": "^18.0.0 || >=20"
   },
   "publishConfig": {
     "access": "public"

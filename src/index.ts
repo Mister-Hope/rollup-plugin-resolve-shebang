@@ -6,16 +6,16 @@ import type {
   TransformResult,
 } from "rollup";
 
-const sheBangRegex = /^\s*(#!.*)/;
+const SHE_BANG_REG = /^\s*(#!.*)/;
 
 export const shebang = (): Plugin => {
   const shebangMap = new Map<string, string>();
 
   return {
-    name: "she-bang",
+    name: "resolve-shebang",
 
     transform(code: string, id: string): TransformResult | null {
-      const match = sheBangRegex.exec(code);
+      const match = SHE_BANG_REG.exec(code);
 
       if (match) {
         const str = new MagicString(code);
@@ -31,11 +31,11 @@ export const shebang = (): Plugin => {
 
     renderChunk(
       code: string,
-      chunk: RenderedChunk
+      chunk: RenderedChunk,
     ): { code: string; map?: SourceMapInput } | null {
       if (chunk.isEntry) {
-        const key = Array.from(shebangMap.keys()).find(
-          (id) => chunk.facadeModuleId?.includes(id)
+        const key = Array.from(shebangMap.keys()).find((id) =>
+          chunk.facadeModuleId?.includes(id),
         );
 
         if (key) {
