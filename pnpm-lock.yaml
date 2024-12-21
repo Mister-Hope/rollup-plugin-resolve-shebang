@@ -10,7 +10,7 @@ importers:
     dependencies:
       magic-string:
         specifier: ^0.30.14
-        version: 0.30.14
+        version: 0.30.17
     devDependencies:
       prettier:
         specifier: 3.4.2
@@ -396,8 +396,8 @@ packages:
     resolution: {integrity: sha512-123qHRfJBmo2jXDbo/a5YOQrJoHF/GNQTLzQ5+IdK5pWpceK17yRc6ozlWd25FxvGKQbIUs91fDFkXmDHTKcyA==}
     engines: {node: 20 || >=22}
 
-  magic-string@0.30.14:
-    resolution: {integrity: sha512-5c99P1WKTed11ZC0HMJOj6CDIue6F8ySu+bJL+85q1zBEIY8IklrJ1eiKC2NDRh3Ct3FcvmJPyQHb9erXMTJNw==}
+  magic-string@0.30.17:
+    resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
   minimatch@10.0.1:
     resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
@@ -771,7 +771,7 @@ snapshots:
 
   lru-cache@11.0.2: {}
 
-  magic-string@0.30.14:
+  magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
@@ -808,7 +808,7 @@ snapshots:
 
   rollup-plugin-dts@6.1.1(rollup@4.29.0)(typescript@5.7.2):
     dependencies:
-      magic-string: 0.30.14
+      magic-string: 0.30.17
       rollup: 4.29.0
       typescript: 5.7.2
     optionalDependencies:
