@@ -37,12 +37,12 @@
     "prepublish": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
-    "magic-string": "^0.30.14"
+    "magic-string": "^0.30.17"
   },
   "devDependencies": {
     "prettier": "3.4.2",
     "rimraf": "6.0.1",
-    "rollup": "4.29.0",
+    "rollup": "4.29.1",
     "rollup-plugin-dts": "6.1.1",
     "rollup-plugin-esbuild": "6.1.1",
     "typescript": "5.7.2"
@@ -50,7 +50,7 @@
   "peerDependencies": {
     "rollup": ">= 4"
   },
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@9.15.1",
   "engines": {
     "node": "^18.0.0 || >=20"
   },
