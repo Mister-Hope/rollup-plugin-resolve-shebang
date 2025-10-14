@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       magic-string:
-        specifier: ^0.30.17
-        version: 0.30.17
+        specifier: ^0.30.19
+        version: 0.30.19
     devDependencies:
       prettier:
         specifier: 3.6.2
@@ -189,8 +189,8 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
-  '@jridgewell/sourcemap-codec@1.5.0':
-    resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
+  '@jridgewell/sourcemap-codec@1.5.5':
+    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
   '@rollup/rollup-android-arm-eabi@4.52.4':
     resolution: {integrity: sha512-BTm2qKNnWIQ5auf4deoetINJm2JzvihvGb9R6K/ETwKLql/Bb3Eg2H1FBp1gUb4YGbydMA3jcmQTR73q7J+GAA==}
@@ -399,8 +399,8 @@ packages:
     resolution: {integrity: sha512-QIXZUBJUx+2zHUdQujWejBkcD9+cs94tLn0+YL8UrCh+D5sCXZ4c7LaEH48pNwRY3MLDgqUFyhlCyjJPf1WP0A==}
     engines: {node: 20 || >=22}
 
-  magic-string@0.30.17:
-    resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
+  magic-string@0.30.19:
+    resolution: {integrity: sha512-2N21sPY9Ws53PZvsEpVtNuSW+ScYbQdp4b9qUaL+9QkHUrGFKo56Lg9Emg5s9V/qrtNBmiR01sYhUOwu3H+VOw==}
 
   minimatch@10.0.1:
     resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
@@ -609,7 +609,7 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@jridgewell/sourcemap-codec@1.5.0': {}
+  '@jridgewell/sourcemap-codec@1.5.5': {}
 
   '@rollup/rollup-android-arm-eabi@4.52.4':
     optional: true
@@ -780,9 +780,9 @@ snapshots:
 
   lru-cache@11.1.0: {}
 
-  magic-string@0.30.17:
+  magic-string@0.30.19:
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   minimatch@10.0.1:
     dependencies:
@@ -819,7 +819,7 @@ snapshots:
 
   rollup-plugin-dts@6.2.3(rollup@4.52.4)(typescript@5.9.3):
     dependencies:
-      magic-string: 0.30.17
+      magic-string: 0.30.19
       rollup: 4.52.4
       typescript: 5.9.3
     optionalDependencies:
