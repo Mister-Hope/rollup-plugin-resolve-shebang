@@ -37,7 +37,7 @@
     "prepublish": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
-    "magic-string": "^0.30.17"
+    "magic-string": "^0.30.19"
   },
   "devDependencies": {
     "prettier": "3.6.2",
@@ -50,7 +50,7 @@
   "peerDependencies": {
     "rollup": ">= 4"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.18.3",
   "engines": {
     "node": "^18.0.0 || >=20"
   },
