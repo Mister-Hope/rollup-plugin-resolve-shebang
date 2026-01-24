@@ -13,8 +13,8 @@ importers:
         version: 0.30.21
     devDependencies:
       prettier:
-        specifier: 3.8.0
-        version: 3.8.0
+        specifier: 3.8.1
+        version: 3.8.1
       rimraf:
         specifier: 6.1.2
         version: 6.1.2
@@ -403,8 +403,8 @@ packages:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
     engines: {node: '>=12'}
 
-  prettier@3.8.0:
-    resolution: {integrity: sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==}
+  prettier@3.8.1:
+    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -698,7 +698,7 @@ snapshots:
 
   picomatch@4.0.3: {}
 
-  prettier@3.8.0: {}
+  prettier@3.8.1: {}
 
   resolve-pkg-maps@1.0.0: {}
 
