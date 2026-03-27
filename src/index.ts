@@ -1,10 +1,5 @@
 import MagicString from "magic-string";
-import type {
-  Plugin,
-  RenderedChunk,
-  SourceMapInput,
-  TransformResult,
-} from "rollup";
+import type { Plugin, RenderedChunk, SourceMapInput, TransformResult } from "rollup";
 
 const SHE_BANG_REG = /^\s*(#!.*)/;
 
@@ -29,18 +24,14 @@ export const shebang = (): Plugin => {
       return null;
     },
 
-    renderChunk(
-      code: string,
-      chunk: RenderedChunk,
-    ): { code: string; map?: SourceMapInput } | null {
+    renderChunk(code: string, chunk: RenderedChunk): { code: string; map?: SourceMapInput } | null {
       if (chunk.isEntry) {
-        const key = Array.from(shebangMap.keys()).find((id) =>
-          chunk.facadeModuleId?.includes(id),
-        );
+        const key = [...shebangMap.keys()].find((id) => chunk.facadeModuleId?.includes(id));
 
         if (key) {
           const str = new MagicString(code);
 
+          // oxlint-disable-next-line typescript/no-non-null-assertion
           str.prepend(`${shebangMap.get(key)!}\n`);
 
           return {

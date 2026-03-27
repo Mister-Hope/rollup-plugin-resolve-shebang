@@ -1,8 +1,0 @@
-# Node modules
-node_modules/
-
-# Dist file
-lib/
-
-# pnpm lock file
-pnpm-lock.yaml
