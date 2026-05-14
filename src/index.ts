@@ -1,7 +1,7 @@
 import MagicString from "magic-string";
 import type { Plugin, RenderedChunk, SourceMapInput, TransformResult } from "rollup";
 
-const SHE_BANG_REG = /^\s*(#!.*)/;
+const SHE_BANG_REG = /^\s*(#!.*)/u;
 
 export const shebang = (): Plugin => {
   const shebangMap = new Map<string, string>();
