@@ -47,7 +47,7 @@
   "devDependencies": {
     "@mr-hope/tsconfig": "0.0.4",
     "oxc-config-hope": "0.3.5",
-    "oxfmt": "0.50.0",
+    "oxfmt": "0.51.0",
     "oxlint": "1.65.0",
     "oxlint-tsgolint": "0.22.1",
     "rimraf": "6.1.3",
