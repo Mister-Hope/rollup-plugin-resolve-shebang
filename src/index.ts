@@ -1,7 +1,7 @@
 import MagicString from "magic-string";
 import type { Plugin, RenderedChunk, SourceMapInput, TransformResult } from "rollup";
 
-const SHE_BANG_REG = /^\s*(#!.*)/u;
+const SHE_BANG_REG = /^\s*(?<shebang>#!.*)/u;
 
 export const shebang = (): Plugin => {
   const shebangMap = new Map<string, string>();
@@ -15,8 +15,10 @@ export const shebang = (): Plugin => {
       if (match) {
         const str = new MagicString(code);
 
-        str.remove(match.index, match[1].length);
-        shebangMap.set(id, match[1]);
+        // oxlint-disable-next-line typescript/no-non-null-assertion
+        str.remove(match.index, match.groups!.shebang.length);
+        // oxlint-disable-next-line typescript/no-non-null-assertion
+        shebangMap.set(id, match.groups!.shebang);
 
         return { code: str.toString(), map: str.generateMap({ hires: true }) };
       }
