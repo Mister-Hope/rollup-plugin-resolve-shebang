@@ -22,13 +22,13 @@
     "url": "git+https://github.com//mister-hope/rollup-plugin-resolve-shebang.git"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./lib/index.js"
+    ".": "./dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -42,7 +42,7 @@
     "prepublish": "pnpm run clean && pnpm run build"
   },
   "dependencies": {
-    "magic-string": "^0.30.21"
+    "magic-string": "^1.4.3"
   },
   "devDependencies": {
     "@mr-hope/tsconfig": "0.0.4",
