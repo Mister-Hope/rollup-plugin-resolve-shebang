@@ -1,31 +1,207 @@
 name: Publish
 
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump to apply
+        type: choice
+        options:
+          - auto
+          - patch
+          - minor
+          - major
+          - prepatch
+          - preminor
+          - premajor
+          - prerelease
+          - none
+        default: auto
+      preid:
+        description: Pre-release identifier used by prerelease, prepatch, preminor and premajor bumps
+        type: string
+        default: ""
+      dist_tag:
+        description: npm dist-tag to publish under (must be set for pre-release versions)
+        type: string
+        default: ""
+      dryrun:
+        description: Run checks and a publish dry run without updating the changelog, committing, pushing, publishing or creating a GitHub Release
+        type: boolean
+        default: false
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
 
 jobs:
   publish:
     name: Publish Package
     runs-on: ubuntu-latest
+    timeout-minutes: 60
+
     steps:
-      - uses: actions/checkout@v7
+      - name: Check if user is allowed to release
+        if: github.actor != 'Mister-Hope'
+        run: |
+          echo "::error::Only Mister-Hope can trigger a release."
+          exit 1
+
+      - name: Check branch
+        if: github.ref_name != 'main'
+        run: |
+          echo "::error::Releases must be dispatched on the main branch."
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/setup@v3
         with:
-          runtime: node@^24.22.1
+          runtime: node@^26.13.0
+          require-lockfile: true
 
-      - name: Install Deps
-        run: pnpm ci
+      - name: Linter test
+        run: pnpm run lint:check
 
       - name: Build project
         run: pnpm run build
 
+      - name: Config git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Resolve version bump
+        id: bump
+        env:
+          BUMP_INPUT: ${{ inputs.bump }}
+        run: |
+          if [ "$BUMP_INPUT" = "auto" ]; then
+            BUMP="$(node scripts/release-bump.ts)"
+          else
+            BUMP="$BUMP_INPUT"
+          fi
+          echo "bump=$BUMP" >> "$GITHUB_OUTPUT"
+
+      - name: Bump version
+        if: inputs.bump != 'none'
+        env:
+          BUMP: ${{ steps.bump.outputs.bump }}
+          PREID: ${{ inputs.preid }}
+        run: |
+          ARGS=(--no-commit-hooks --no-git-tag-version --no-git-checks)
+          if [ -n "$PREID" ]; then
+            pnpm version "$BUMP" --preid "$PREID" "${ARGS[@]}"
+          else
+            pnpm version "$BUMP" "${ARGS[@]}"
+          fi
+
+      - name: Show release version
+        id: version
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Releasing v$VERSION"
+
+      - name: Update CHANGELOG.md
+        if: ${{ !inputs.dryrun && inputs.bump != 'none' }}
+        run: |
+          pnpm run changelog -- -i CHANGELOG.md -o CHANGELOG.md
+          pnpm exec oxfmt CHANGELOG.md
+
+      - name: Commit release commit and tag
+        if: ${{ !inputs.dryrun && inputs.bump != 'none' }}
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git add CHANGELOG.md package.json
+          git commit -m "chore: release v$VERSION"
+          git tag -a "v$VERSION" -m "v$VERSION"
+
+      - name: Resolve npm dist-tag
+        id: dist-tag
+        env:
+          DIST_TAG: ${{ inputs.dist_tag }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if [ -n "$DIST_TAG" ]; then
+            TAG="$DIST_TAG"
+          elif [[ "$VERSION" == *-* ]]; then
+            echo "::error::Pre-release versions must be published with an explicit dist_tag input."
+            exit 1
+          else
+            TAG="latest"
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Push release commit and tag
+        if: ${{ !inputs.dryrun && inputs.bump != 'none' }}
+        run: git push origin "HEAD:${GITHUB_REF_NAME}" --follow-tags
+
+      - name: Publish to npm (dry run)
+        if: inputs.dryrun
+        env:
+          TAG: ${{ steps.dist-tag.outputs.tag }}
+        run: pnpm publish --dry-run --no-git-checks --tag "$TAG"
+
       - name: Publish to npm
-        run: pnpm publish --no-git-checks
+        if: ${{ !inputs.dryrun }}
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG: ${{ steps.dist-tag.outputs.tag }}
+        run: |
+          # `bump = none` may retry a release that only partially completed, so skip an
+          # already published version instead of failing the workflow.
+          # `|| echo 000` keeps the failure path explainable if curl itself fails (DNS, timeout).
+          STATUS="$(curl -s --max-time 20 -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/rollup-plugin-resolve-shebang/$VERSION" || echo 000)"
+
+          case "$STATUS" in
+            200)
+              echo "v$VERSION is already published on npm; skipping."
+              ;;
+            404)
+              pnpm publish --no-git-checks --provenance --tag "$TAG"
+              ;;
+            *)
+              echo "::error::Could not check rollup-plugin-resolve-shebang@$VERSION on the npm registry (HTTP $STATUS)."
+              exit 1
+              ;;
+          esac
+
+      - name: Create or update GitHub Release
+        if: ${{ !inputs.dryrun }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          NOTES="$RUNNER_TEMP/release-notes.md"
+
+          awk -v ver="$VERSION" '
+            index($0, "## [" ver "]") == 1 { found = 1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > "$NOTES"
+
+          if grep -q '[^[:space:]]' "$NOTES"; then
+            if gh release view "v$VERSION" >/dev/null 2>&1; then
+              gh release edit "v$VERSION" --notes-file "$NOTES"
+            else
+              gh release create "v$VERSION" --verify-tag --title "v$VERSION" --notes-file "$NOTES"
+            fi
+          elif ! gh release view "v$VERSION" >/dev/null 2>&1; then
+            gh release create "v$VERSION" --verify-tag --title "v$VERSION" --generate-notes
+          fi
+
+          if [[ "$VERSION" == *-* ]]; then
+            gh release edit "v$VERSION" --prerelease
+          else
+            gh release edit "v$VERSION" --latest
+          fi
