@@ -1,4 +1,7 @@
 {
   "extends": "@mr-hope/tsconfig/bundler.json",
-  "include": ["src/**/*.ts"]
+  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "types": ["node"]
+  }
 }
