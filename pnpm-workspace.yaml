@@ -2,10 +2,12 @@ virtualStoreType: global
 
 minimumReleaseAgeExclude:
   - "@oxfmt/*"
+  - "@oxlint-tsgolint/*"
   - "@oxlint/*"
   - oxc-config-hope
   - oxfmt
   - oxlint
+  - oxlint-tsgolint
 minimumReleaseAgeExcludePrune: true
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 720
