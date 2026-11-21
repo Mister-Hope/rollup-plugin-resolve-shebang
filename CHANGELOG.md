@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/Mister-Hope/rollup-plugin-resolve-shebang/compare/v1.0.1...v1.1.0) (2026-11-21)
+
+### Features
+
+- upgrade magic-string to v1 and fix package output dir ([09ccb90](https://github.com/Mister-Hope/rollup-plugin-resolve-shebang/commit/09ccb90f10e82d49bd6d7017331033acdc39a48b))
+
 ## [1.0.1](https://github.com/Mister-Hope/rollup-plugin-resolve-shebang/compare/v1.0.0...v1.0.1) (2023-11-23)
 
 ### Bug Fixes

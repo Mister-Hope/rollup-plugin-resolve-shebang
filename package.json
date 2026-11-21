@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-resolve-shebang",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Rollup plugin with recognize shebang and preserve it",
   "keywords": [
     "rollup",
